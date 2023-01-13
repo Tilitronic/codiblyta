@@ -1,0 +1,13 @@
+.paginationWrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.paginationPages{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.paginationButton.active{
+    font-weight: bold;
+}

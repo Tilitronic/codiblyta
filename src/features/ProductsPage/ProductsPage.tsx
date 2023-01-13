@@ -1,40 +1,22 @@
-import { getProducts } from "../../api/services/productsService"
-import { useEffect, useState } from "react"
-import { ProductsTable
- } from "./ProductsTable/ProductsTable"
+import { useEffect } from 'react';
+import { ProductsTable } from './ProductsTable/ProductsTable';
+import { getProducts, ProductsState } from './productsSlice';
+import { RootState, AppDispatch } from '../../app/store';
+import { useSelector, useDispatch } from 'react-redux';
 
- type ProductObj = {
-    color: string,
-    id: number,
-    name: string,
-    antone_value: string,
-    year: number,
-}
-
-type ProductsTableProps = {
-    data: [ProductObj],
-    page: number,
-    per_page: number,
-    total: number,
-    total_pages: number,
-    support?: any
-
-}
-
-export function ProductsPage(){
-    const [data, setData] = useState<any>(null)
-
-    useEffect(()=>{
-       getProducts({page: 0, per_page: 5}).then(data=>setData(data))
-       
-    }, [])
-
+export function ProductsPage () {
+    const dispatch = useDispatch<AppDispatch>();
+    const products: ProductsState = useSelector((state: RootState) => state.products);
+    useEffect(() => {
+        dispatch(getProducts({ page: 1, per_page: 100 }));
+    }, []);
+    console.log('products', products);
     return (
         <div>
-            {data ? 
-                <ProductsTable data={data}/>
-            : null}
-            
+            {products.data.length > 0
+                ? <ProductsTable products={products.data}/>
+                : null}
+
         </div>
-    )
+    );
 }

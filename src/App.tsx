@@ -1,62 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect } from 'react';
+// import logo from './logo.svg';
+// import { Counter } from './features/counter/Counter';
 import { ProductsPage } from './features/ProductsPage';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header> */}
-      <main>
-        <ProductsPage/>
-      </main>
-    </div>
-  );
+function App () {
+    const location = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (location.pathname === '/') {
+            navigate('/products');
+        }
+    }, [location]);
+    return (
+        <div className="App">
+            <main>
+                <Routes>
+                    <Route path='/products/:page?/:id?/:filtr?' element={<ProductsPage/>}/>
+                </Routes>
+            </main>
+        </div>
+    );
 }
 
 export default App;
