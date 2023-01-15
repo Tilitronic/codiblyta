@@ -1,7 +1,6 @@
 import { ProductObj } from '../../productsSlice';
 
 import Typography from '@mui/material/Typography';
-import './ProductInfo.css';
 
 interface ProductInfoProps {
     products: ProductObj []
@@ -12,11 +11,11 @@ export function ProductInfo ({ products, id }: ProductInfoProps) {
     const product = products.find(obj => obj.id.toString() === id.toString());
     if (!product || !id) { return null; }
     return (
-        <div className='productInfo'>
-            <Typography variant='h6' className='productInfoTitle' sx={{ marginBottom: '20px' }}>Product info</Typography>
+        <div style={styles.productInfo}>
+            <Typography variant='h6' sx={styles.productInfoTitle}>Product info</Typography>
             {Object.entries(product).map((ent, index) => {
                 return (
-                    <div className='productInfoUnit' key={index}>
+                    <div style={styles.productInfoUnit} key={index}>
                         <Typography>{ent[0] + ':'}</Typography>
                         <Typography>{ent[1]}</Typography>
                     </div>
@@ -25,3 +24,22 @@ export function ProductInfo ({ products, id }: ProductInfoProps) {
         </div>
     );
 }
+
+const styles = {
+    productInfoUnit: {
+        display: 'flex',
+        width: '200px',
+        justifyContent: 'space-between',
+        fontSize: '15px',
+    },
+
+    productInfo: {
+        display: 'flex' as 'flex',
+        flexDirection: 'column' as 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    productInfoTitle: {
+        marginBottom: '20px'
+    }
+};

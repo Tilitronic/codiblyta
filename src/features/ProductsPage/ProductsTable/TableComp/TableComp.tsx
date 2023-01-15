@@ -24,19 +24,19 @@ export function TableComp ({ pageProducts, setIsModalOpen, setIdState }: TablePr
     };
 
     return (
-        <div className='productsTableWrapper'>
+        <div className='productsTableWrapper' style={styles.productsTableWrapper}>
             <TableContainer component={Paper}>
-                <Table className='productsTable' sx={{ minWidth: 300 }}>
+                <Table className='productsTable' sx={styles.productsTable}>
                     <TableHead>
                         <TableRow>
-                            <TableCell>
-                                <Typography>id</Typography>
+                            <TableCell sx={styles.tableHead}>
+                                <Typography sx={styles.text}>id</Typography>
                             </TableCell>
-                            <TableCell>
-                                <Typography>name</Typography>
+                            <TableCell sx={styles.tableHead}>
+                                <Typography sx={styles.text}>name</Typography>
                             </TableCell>
-                            <TableCell>
-                                <Typography>year</Typography>
+                            <TableCell sx={styles.tableHead}>
+                                <Typography sx={styles.text}>year</Typography>
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -54,3 +54,26 @@ export function TableComp ({ pageProducts, setIsModalOpen, setIdState }: TablePr
         </div>
     );
 }
+
+const styles = {
+    text: {
+        height: '55px',
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bolder'
+    },
+    productsTableWrapper: {
+        marginBottom: '25px',
+        height: '360px'
+    },
+    productsTable: {
+        minWidth: '300px',
+    },
+    tableHead: {
+        padding: '0',
+        paddingLeft: '15px',
+        paddingRight: '15px',
+    }
+};

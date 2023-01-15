@@ -12,16 +12,34 @@ export function ProductRow ({ handleModalOpen, id, name, year, color }: ProductR
         handleModalOpen(id);
     };
     return (
-        <TableRow style={{ backgroundColor: color }} onClick={handleClick}>
-            <TableCell>
-                <Typography>{id}</Typography>
+        <TableRow style={{ backgroundColor: color, ...styles.tableRow }} onClick={handleClick}>
+            <TableCell sx={styles.tableCell}>
+                <Typography sx={styles.text}>{id}</Typography>
             </TableCell>
-            <TableCell>
-                <Typography>{name}</Typography>
+            <TableCell sx={styles.tableCell}>
+                <Typography sx={styles.text}>{name}</Typography>
             </TableCell>
-            <TableCell>
-                <Typography>{year}</Typography>
+            <TableCell sx={styles.tableCell}>
+                <Typography sx={styles.text}>{year}</Typography>
             </TableCell>
         </TableRow>
     );
 }
+
+const styles = {
+    text: {
+        height: '55px',
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    tableRow: {
+        cursor: 'pointer',
+    },
+    tableCell: {
+        margin: '0',
+        padding: '0',
+    }
+
+};

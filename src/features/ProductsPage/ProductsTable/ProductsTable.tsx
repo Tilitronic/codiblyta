@@ -13,7 +13,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
-import './ProductsTable.css';
 interface ProductsTableProps {
     products: ProductObj[]
 };
@@ -93,8 +92,8 @@ export function ProductsTable ({ products }: ProductsTableProps) {
     };
 
     return (
-        <div className='mainProductsTableWrapper'>
-            <div className='filterInput'>
+        <div style={styles.mainProductsTableWrapper}>
+            <div style={styles.filterInput}>
                 <TextField
                     id="filled-search"
                     label="Filter by id"
@@ -104,7 +103,7 @@ export function ProductsTable ({ products }: ProductsTableProps) {
                     onChange={handleInput}
                 />
             </div>
-            <Typography variant='h4'>Products table</Typography>
+            <Typography variant='h4' sx={styles.tableTitle}>Products table</Typography>
             <TableComp pageProducts={pageProducts} setIsModalOpen={setIsModalOpen} setIdState={setIdState}/>
             <Modal isModalOpen={isModalOpen} handleModalClose={handleModalClose}>
                 { idState
@@ -118,3 +117,18 @@ export function ProductsTable ({ products }: ProductsTableProps) {
         </div>
     );
 }
+
+const styles = {
+    mainProductsTableWrapper: {
+        display: 'flex',
+        flexDirection: 'column' as 'column',
+        alignItems: 'center',
+    },
+    filterInput: {
+        display: 'flex',
+        margin: '15px',
+    },
+    tableTitle: {
+        marginBottom: '25px'
+    },
+};

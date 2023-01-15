@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Typography } from '@mui/material';
-import './Pagination.css';
 
 interface PaginationProps {
     quantity: number
@@ -32,11 +31,11 @@ export function Pagination ({ quantity, perPage, setPage, currentPage }: Paginat
     };
 
     return (
-        <div className='paginationWrapper'>
+        <div style={styles.paginationWrapper}>
             <Button onClick={() => { turnPage(currentPage, 'prev'); }} variant="contained">
                 <ArrowBackIosNewIcon/>
             </Button>
-            <div className='paginationPages'>
+            <div style={styles.paginationPages}>
                 {buttons !== 0 && Array.from(Array(buttons).keys()).map((num) => {
                     const isActive = num === currentPage ? 'active' : '';
                     const className = 'paginationButton ' + isActive;
@@ -64,3 +63,17 @@ export function Pagination ({ quantity, perPage, setPage, currentPage }: Paginat
         </div>
     );
 }
+
+const styles = {
+    paginationWrapper: {
+        display: 'flex',
+        flexDirection: 'row' as 'row'
+    },
+    paginationPages: {
+        marginLeft: '15px',
+        marginRight: '15px',
+        display: 'flex' as 'flex',
+        alignItems: 'center',
+        maxWidth: '900px',
+    },
+};
