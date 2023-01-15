@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Typography } from '@mui/material';
 import './Pagination.css';
+
 interface PaginationProps {
     quantity: number
     perPage: number
@@ -28,23 +33,34 @@ export function Pagination ({ quantity, perPage, setPage, currentPage }: Paginat
 
     return (
         <div className='paginationWrapper'>
-            <button onClick={() => { turnPage(currentPage, 'prev'); }}>
-                {'<-'}
-            </button>
+            <Button onClick={() => { turnPage(currentPage, 'prev'); }} variant="contained">
+                <ArrowBackIosNewIcon/>
+            </Button>
             <div className='paginationPages'>
                 {buttons !== 0 && Array.from(Array(buttons).keys()).map((num) => {
                     const isActive = num === currentPage ? 'active' : '';
                     const className = 'paginationButton ' + isActive;
                     return (
-                        <button key={num} onClick={() => { setPage(num); }} className={className}>
-                            {num + 1}
-                        </button>
+                        <Button
+                            key={num}
+                            onClick={() => { setPage(num); }}
+                            className={className}
+                            variant={currentPage === num ? 'contained' : 'text'}
+                            size='small'
+                            sx={{
+                                padding: '0',
+                                margin: '0',
+                                borderRadius: '50px',
+                            }}
+                        >
+                            <Typography>{num + 1}</Typography>
+                        </Button>
                     );
                 })}
             </div>
-            <button onClick={() => { turnPage(currentPage, 'next'); }}>
-                {'->'}
-            </button>
+            <Button onClick={() => { turnPage(currentPage, 'next'); }} variant="contained">
+                <ArrowForwardIosIcon/>
+            </Button>
         </div>
     );
 }

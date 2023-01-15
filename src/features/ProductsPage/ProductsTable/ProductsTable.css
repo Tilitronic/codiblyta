@@ -5,11 +5,12 @@
 }
 
 .mainProductsTableWrapper>*{
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .filterInput{
     display: flex;
+    margin: 15px;
 }
 
 .filterInput input{
@@ -29,6 +30,10 @@
     align-items: center;
 }
 
+.productsTable thead p {
+    font-weight: bolder;
+}
+
 .productsTableWrapper tbody tr{
     cursor: pointer;
 }
@@ -40,4 +45,15 @@
 
 .productsTable tr{
     height: 20px;
+}
+.productsTable td{
+    margin: 0;
+    padding: 0;
+    height: 20px;
+}
+.productsTable th{
+    padding: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* height: 20px; */
 }

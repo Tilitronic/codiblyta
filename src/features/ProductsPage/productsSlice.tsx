@@ -10,12 +10,10 @@ export interface ProductObj {
 }
 
 export interface ProductsState {
+    status: string
     data: ProductObj[]
-    page: number
-    per_page: number
-    total: number
-    total_pages: number
-    support?: any
+    error: boolean
+    massage: string
 }
 
 export interface GetProductsParams {
@@ -24,11 +22,10 @@ export interface GetProductsParams {
 };
 
 const initialState: ProductsState = {
+    status: '',
     data: [],
-    page: 0,
-    per_page: 0,
-    total: 0,
-    total_pages: 0,
+    error: false,
+    massage: ''
 };
 
 export const getProducts = createAsyncThunk(
@@ -48,11 +45,14 @@ export const productsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getProducts.fulfilled, (state, action) => {
-                state.data = action.payload.data;
-                // state.page = action.payload.page;
-                // state.per_page = action.payload.per_page;
-                // state.total = action.payload.total;
-                // state.total_pages = action.payload.total_pages;
+                const response = action.payload;
+                state.status = response.status.toString();
+                if (response.status === 200) {
+                    state.data = response.data;
+                } else {
+                    state.error = true;
+                    state.massage = response.statusText;
+                }
             });
     }
 

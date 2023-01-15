@@ -1,5 +1,8 @@
-import './ProductInfo.css';
 import { ProductObj } from '../../productsSlice';
+
+import Typography from '@mui/material/Typography';
+import './ProductInfo.css';
+
 interface ProductInfoProps {
     products: ProductObj []
     id: string | undefined
@@ -10,12 +13,12 @@ export function ProductInfo ({ products, id }: ProductInfoProps) {
     if (!product || !id) { return null; }
     return (
         <div className='productInfo'>
-            <h6>Product info</h6>
+            <Typography variant='h6' className='productInfoTitle' sx={{ marginBottom: '20px' }}>Product info</Typography>
             {Object.entries(product).map((ent, index) => {
                 return (
                     <div className='productInfoUnit' key={index}>
-                        <p>{ent[0] + ':'}</p>
-                        <p>{ent[1]}</p>
+                        <Typography>{ent[0] + ':'}</Typography>
+                        <Typography>{ent[1]}</Typography>
                     </div>
                 );
             })}

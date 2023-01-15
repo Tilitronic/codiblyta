@@ -8,6 +8,11 @@
     margin-right: 15px;
 }
 
-.paginationButton.active{
+.paginationPages{
+    display: flex;
+    align-items: center;
+    max-width: 900px;
+}
+.paginationButton.active > *{
     font-weight: bold;
 }
