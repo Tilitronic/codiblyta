@@ -20,7 +20,6 @@ export function ProductTable ({ items, setIsModalOpen, setIdState }: ProductTabl
     const handleModalOpen = (idSt: string | number) => {
         setIsModalOpen(true);
         setIdState(idSt.toString());
-        console.log('modal is true');
     };
 
     return (
