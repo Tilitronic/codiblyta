@@ -1,4 +1,4 @@
-import { ProductObj } from '../../productsSlice';
+import { ProductObj } from '../productsSlice';
 
 import Typography from '@mui/material/Typography';
 import TableCell from '@mui/material/TableCell';

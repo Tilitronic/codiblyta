@@ -1,4 +1,4 @@
-import { ProductObj } from '../../productsSlice';
+import { ProductObj } from '../productsSlice';
 import { ProductRow } from '../ProductRow/ProductRow';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -11,12 +11,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-interface TableProps {
-    pageProducts: ProductObj[]
+interface ProductTableProps {
+    items: ProductObj[]
     setIsModalOpen: Dispatch<SetStateAction<boolean>>
     setIdState: Dispatch<SetStateAction<string>>
 }
-export function TableComp ({ pageProducts, setIsModalOpen, setIdState }: TableProps) {
+export function ProductTable ({ items, setIsModalOpen, setIdState }: ProductTableProps) {
     const handleModalOpen = (idSt: string | number) => {
         setIsModalOpen(true);
         setIdState(idSt.toString());
@@ -24,7 +24,7 @@ export function TableComp ({ pageProducts, setIsModalOpen, setIdState }: TablePr
     };
 
     return (
-        <div className='productsTableWrapper' style={styles.productsTableWrapper}>
+        <div style={styles.productsTableWrapper}>
             <TableContainer component={Paper}>
                 <Table className='productsTable' sx={styles.productsTable}>
                     <TableHead>
@@ -41,8 +41,8 @@ export function TableComp ({ pageProducts, setIsModalOpen, setIdState }: TablePr
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {pageProducts.length > 0
-                            ? pageProducts.map((obj: ProductObj) => {
+                        {items.length > 0
+                            ? items.map((obj: ProductObj) => {
                                 return (
                                     <ProductRow key={obj.id} {...{ ...obj, handleModalOpen }}/>
                                 );

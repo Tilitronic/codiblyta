@@ -18,7 +18,7 @@ function App () {
         <div className="App">
             <main>
                 <Routes>
-                    <Route path='/products/:page?/:id?/:filtr?' element={<ProductsPage/>}/>
+                    <Route path='/products/:page?/:id?/:search?' element={<ProductsPage/>}/>
                     <Route path='*' element={<Page404 />}/>
                 </Routes>
             </main>
